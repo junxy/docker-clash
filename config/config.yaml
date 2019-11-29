@@ -27,7 +27,7 @@ external-controller: 0.0.0.0:9090
 
 # you can put the static web resource (such as clash-dashboard) to a directory, and clash would serve in `${API}/ui`
 # input is a relative path to the configuration directory or an absolute path
-external-ui: /clash_ui
+external-ui: clash_ui
 
 # Secret for RESTful API (Optional)
 # secret: ""

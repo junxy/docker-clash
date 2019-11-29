@@ -8,7 +8,7 @@ services:
     # build: .
     # restart: always
     volumes:
-      - ./config/config.yaml:/root/.config/clash/config.yaml
+      - ./config/config.yaml:/root/.config/clash/config.yaml:ro
     ports:
       - "9090:9090"
       - "17890:17890"

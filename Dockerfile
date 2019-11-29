@@ -42,9 +42,9 @@ RUN apk add --no-cache tzdata ca-certificates \
 
 COPY --from=go_builder /Country.mmdb /root/.config/clash/
 COPY --from=go_builder /clash /
-COPY --from=node_builder /clash_ui /clash_ui
+COPY --from=node_builder /clash_ui /root/.config/clash/clash_ui
 
-# RUN ls -al /root/.config/clash/; ls -al /clash_ui
+RUN ls -al /root/.config/clash/; ls -al /root/.config/clash/clash_ui
 # VOLUME [ "/root/.config/clash/" ]
 
 ENTRYPOINT ["/clash","-d","/root/.config/clash/"]
