@@ -4,7 +4,8 @@ version: '3.7'
 
 services:
   clash:
-    build: .
+    image: junxy/clash
+    # build: .
     # restart: always
     volumes:
       - ./config/config.yaml:/root/.config/clash/config.yaml
