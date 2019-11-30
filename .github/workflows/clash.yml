@@ -15,3 +15,11 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
+    - name: Publish to Docker Hub Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: junxy/clash:res-ui
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        workdir: webui/
+      if: github.ref == 'refs/heads/web_ui_build'
