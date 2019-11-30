@@ -11,3 +11,6 @@ RUN mv ./dist /clash_ui
 #https://serverfault.com/questions/476485/do-some-debian-builds-not-have-lsb-release
 # RUN cat /etc/os-release
 # RUN ls -al /clash_ui
+
+FROM scratch:latest
+COPY --from=node_builder /clash_ui /clash_ui
