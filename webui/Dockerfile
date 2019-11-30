@@ -12,5 +12,5 @@ RUN mv ./dist /clash_ui
 # RUN cat /etc/os-release
 # RUN ls -al /clash_ui
 
-FROM scratch:latest
+FROM scratch
 COPY --from=node_builder /clash_ui /clash_ui
