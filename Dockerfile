@@ -1,5 +1,5 @@
 # 1. build clash dashboard
-FROM junxy:clash:res-ui as node_builder
+FROM junxy/clash:res-ui as node_builder
 
 
 # 2. build clash
