@@ -1,17 +1,25 @@
-name: CI
-
+name: Docker Image CI
 on: [push]
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+    - name: Set env
+      run: echo ::set-env name=GITHUB_SHA_SHORT::$(echo $GITHUB_SHA | cut -c 1-6)
+    - name: "[clash] Publish to Github Registry"
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: junxy/docker-clash/clash
+        username: junxy
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
+    - name: "[webui] Publish to Docker Hub Registry"
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: junxy/clash:res-ui
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        workdir: webui/
+      if: github.ref == 'refs/heads/web_ui_build'
